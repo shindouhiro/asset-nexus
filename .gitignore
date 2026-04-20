@@ -4,3 +4,19 @@ dist
 .turbo
 *.log
 .eslintcache
+
+# Nuxt
+.nuxt
+.output
+.nitro
+.cache
+
+# Database
+packages/db/sqlite.db
+packages/db/drizzle
+
+# Environment variables
+.env
+.env.*
+!.env.example
+

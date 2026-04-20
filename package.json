@@ -9,7 +9,9 @@
     "start": "node apps/web/.output/server/index.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "db:studio": "pnpm --filter @platform/db db:studio",
+    "db:seed": "pnpm --filter @platform/db db:seed"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",

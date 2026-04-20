@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@iconify-json/carbon": "^1.2.20",
+    "@libsql/client": "^0.17.2",
+    "@platform/db": "workspace:^",
     "@platform/utils": "workspace:*",
     "@unocss/nuxt": "catalog:",
     "nuxt": "catalog:",
