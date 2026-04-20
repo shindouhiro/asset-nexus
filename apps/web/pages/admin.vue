@@ -41,33 +41,33 @@ function addNew() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-950 text-slate-300 p-8">
+  <div class="min-h-screen bg-slate-950 text-slate-300 p-4 sm:p-8">
     <div class="max-w-7xl mx-auto space-y-8">
       <!-- Top Header -->
-      <header class="flex justify-between items-center bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
+      <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-slate-900 p-4 sm:p-6 rounded-2xl border border-slate-800 shadow-xl gap-6">
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.3)]">
-            <span class="i-carbon-ticket text-2xl text-white" />
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.3)] shrink-0">
+            <span class="i-carbon-ticket text-xl sm:text-2xl text-white" />
           </div>
           <div>
-            <h1 class="text-2xl font-bold text-white tracking-wide">
+            <h1 class="text-xl sm:text-2xl font-bold text-white tracking-wide">
               优惠券管理台
             </h1>
-            <p class="text-sm text-slate-400 mt-1">
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">
               管理和配置前端展示的优惠券数据
             </p>
           </div>
         </div>
-        <div class="flex items-center gap-4">
-          <NuxtLink to="/" class="flex items-center gap-2 px-4 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all font-medium">
+        <div class="flex items-center gap-2 sm:gap-4 w-full sm:w-auto">
+          <NuxtLink to="/" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all font-medium text-sm">
             <span class="i-carbon-view text-lg" />
-            预览前台
+            <span class="hidden xs:inline">预览前台</span>
           </NuxtLink>
-          <button class="flex items-center gap-2 px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-bold shadow-[0_0_10px_rgba(8,145,178,0.5)] transition-all" @click="addNew">
+          <button class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-bold shadow-[0_0_10px_rgba(8,145,178,0.5)] transition-all text-sm" @click="addNew">
             <span class="i-carbon-add text-lg" />
-            新增优惠券
+            <span>新增</span>
           </button>
-          <button class="flex items-center justify-center w-10 h-10 border border-slate-700 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-all" title="退出登录" @click="handleLogout">
+          <button class="flex items-center justify-center w-10 h-10 border border-slate-700 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-all shrink-0" title="退出登录" @click="handleLogout">
             <span class="i-carbon-logout text-lg" />
           </button>
         </div>
@@ -78,20 +78,20 @@ function addNew() {
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
-              <tr class="bg-slate-800/50 border-b border-slate-800 text-slate-400 text-sm tracking-wider uppercase">
-                <th class="p-4 pl-6 font-medium w-24">
+              <tr class="bg-slate-800/50 border-b border-slate-800 text-slate-400 text-xs sm:text-sm tracking-wider uppercase">
+                <th class="p-4 pl-6 font-medium w-20 hidden sm:table-cell">
                   ID
                 </th>
-                <th class="p-4 font-medium w-32">
-                  封面图
+                <th class="p-4 font-medium w-24 sm:w-32">
+                  预览
                 </th>
                 <th class="p-4 font-medium">
-                  基本信息
+                  信息
                 </th>
                 <th class="p-4 font-medium hidden md:table-cell">
-                  详细描述
+                  说明
                 </th>
-                <th class="p-4 pr-6 font-medium text-right w-32">
+                <th class="p-4 pr-6 font-medium text-right w-24 sm:w-32">
                   操作
                 </th>
               </tr>
@@ -102,23 +102,23 @@ function addNew() {
                 class="hover:bg-slate-800/30 transition-colors group"
               >
                 <!-- ID -->
-                <td class="p-4 pl-6 text-slate-500 font-mono text-sm">
+                <td class="p-4 pl-6 text-slate-500 font-mono text-sm hidden sm:table-cell">
                   #{{ index + 1 }}
                 </td>
 
                 <!-- Image -->
                 <td class="p-4">
-                  <div class="w-20 h-14 rounded-lg overflow-hidden border border-slate-700 bg-slate-800">
+                  <div class="w-16 h-12 sm:w-20 sm:h-14 rounded-lg overflow-hidden border border-slate-700 bg-slate-800">
                     <img :src="coupon.image" :alt="coupon.title" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                   </div>
                 </td>
 
                 <!-- Info -->
                 <td class="p-4">
-                  <div class="font-bold text-white mb-1">
+                  <div class="font-bold text-white mb-1 text-sm sm:text-base">
                     {{ coupon.title }}
                   </div>
-                  <a :href="coupon.link" target="_blank" class="text-xs text-cyan-500 hover:text-cyan-400 font-mono flex items-center gap-1 max-w-[200px] truncate">
+                  <a :href="coupon.link" target="_blank" class="text-[10px] sm:text-xs text-cyan-500 hover:text-cyan-400 font-mono flex items-center gap-1 max-w-[120px] sm:max-w-[200px] truncate">
                     <span class="i-carbon-link shrink-0" />
                     {{ coupon.link }}
                   </a>
@@ -134,11 +134,11 @@ function addNew() {
                 <!-- Actions -->
                 <td class="p-4 pr-6 text-right">
                   <button
-                    class="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-400 hover:text-cyan-300 rounded-md text-sm font-medium transition-colors border border-slate-700"
+                    class="inline-flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-400 hover:text-cyan-300 rounded-md text-xs sm:text-sm font-medium transition-colors border border-slate-700"
                     @click="editCoupon(coupon)"
                   >
                     <span class="i-carbon-edit" />
-                    编辑
+                    <span class="hidden xs:inline">编辑</span>
                   </button>
                 </td>
               </tr>
@@ -158,10 +158,10 @@ function addNew() {
       <div v-if="isEditing" class="fixed inset-0 bg-slate-950/80 flex items-center justify-center p-4 z-50 backdrop-blur-md">
         <div class="bg-slate-900 border border-slate-700 shadow-2xl p-0 rounded-2xl w-full max-w-lg overflow-hidden flex flex-col">
           <!-- Modal Header -->
-          <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
-            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+          <div class="px-5 py-4 sm:px-6 sm:py-4 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
+            <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
               <span class="i-carbon-edit text-cyan-500" />
-              {{ editingCoupon.id ? '编辑优惠券配置' : '新增优惠券' }}
+              {{ editingCoupon.id ? '编辑优惠券' : '新增优惠券' }}
             </h2>
             <button class="text-slate-400 hover:text-white transition-colors p-1" @click="isEditing = false">
               <span class="i-carbon-close text-xl" />
@@ -169,24 +169,24 @@ function addNew() {
           </div>
 
           <!-- Modal Body -->
-          <div class="p-6 space-y-5 overflow-y-auto max-h-[70vh]">
+          <div class="p-5 sm:p-6 space-y-5 overflow-y-auto max-h-[75vh]">
             <div>
-              <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">优惠券标题</label>
+              <label class="block text-xs sm:text-sm font-medium text-slate-400 mb-1.5 ml-1">优惠券标题</label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <span class="i-carbon-string-text text-slate-500" />
                 </div>
                 <input
                   v-model="editingCoupon.title" type="text" placeholder="例如: 新人立减50元"
-                  class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition-all"
+                  class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 py-2 sm:py-2.5 text-sm sm:text-base text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition-all"
                 >
               </div>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">封面图片视图</label>
+              <label class="block text-xs sm:text-sm font-medium text-slate-400 mb-1.5 ml-1">封面图片视图</label>
               <div class="flex gap-4 items-start">
-                <div class="w-16 h-16 rounded-lg bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shrink-0">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shrink-0">
                   <img v-if="editingCoupon.image" :src="editingCoupon.image" class="w-full h-full object-cover">
                   <div v-else class="i-carbon-image text-2xl text-slate-600" />
                 </div>
@@ -196,9 +196,9 @@ function addNew() {
                   </div>
                   <input
                     v-model="editingCoupon.image" type="text" placeholder="https://..."
-                    class="w-full h-10 bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition-all mb-2"
+                    class="w-full h-9 sm:h-10 bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition-all mb-1 sm:mb-2"
                   >
-                  <p class="text-xs text-slate-500">
+                  <p class="text-[10px] sm:text-xs text-slate-500">
                     建议尺寸: 800x450px
                   </p>
                 </div>
@@ -206,33 +206,33 @@ function addNew() {
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">使用描述</label>
+              <label class="block text-xs sm:text-sm font-medium text-slate-400 mb-1.5 ml-1">使用描述</label>
               <textarea
                 v-model="editingCoupon.description" placeholder="详细说明优惠券的使用规则、期限等..."
-                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition-all min-h-[100px] resize-y"
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2 sm:py-3 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition-all min-h-[80px] sm:min-h-[100px] resize-y"
               />
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">领券/跳转链接</label>
+              <label class="block text-xs sm:text-sm font-medium text-slate-400 mb-1.5 ml-1">领券/跳转链接</label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <span class="i-carbon-url text-slate-500" />
                 </div>
                 <input
                   v-model="editingCoupon.link" type="text" placeholder="https://..."
-                  class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition-all"
+                  class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 py-2 sm:py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition-all"
                 >
               </div>
             </div>
           </div>
 
           <!-- Modal Footer -->
-          <div class="px-6 py-4 border-t border-slate-800 bg-slate-800/30 flex gap-3 justify-end">
-            <button class="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors border border-slate-700" @click="isEditing = false">
+          <div class="px-5 py-4 sm:px-6 sm:py-4 border-t border-slate-800 bg-slate-800/30 flex gap-3 justify-end mt-auto">
+            <button class="flex-1 sm:flex-none px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors border border-slate-700 text-sm" @click="isEditing = false">
               取消
             </button>
-            <button class="px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-bold shadow-[0_0_10px_rgba(8,145,178,0.4)] transition-all flex items-center gap-2" @click="handleSave">
+            <button class="flex-2 sm:flex-none px-5 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-bold shadow-[0_0_10px_rgba(8,145,178,0.4)] transition-all flex items-center justify-center gap-2 text-sm" @click="handleSave">
               <span class="i-carbon-save" />
               保存设置
             </button>

@@ -14,17 +14,17 @@ useHead({
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-900 text-white font-sans p-8">
-    <header class="max-w-6xl mx-auto mb-12 flex justify-between items-center">
+  <div class="min-h-screen bg-slate-900 text-white font-sans p-4 sm:p-8">
+    <header class="max-w-6xl mx-auto mb-8 sm:mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
       <div>
-        <h1 class="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+        <h1 class="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
           专享优惠券
         </h1>
-        <p class="text-slate-400 mt-2">
+        <p class="text-slate-400 mt-2 text-sm sm:text-base">
           发现精选优惠，开启省钱之旅
         </p>
       </div>
-      <NuxtLink to="/admin" class="px-6 py-2 rounded-full border border-slate-700 hover:bg-slate-800 transition-colors">
+      <NuxtLink to="/admin" class="px-5 py-2 sm:px-6 sm:py-2 rounded-full border border-slate-700 hover:bg-slate-800 transition-colors text-sm sm:text-base">
         管理后台
       </NuxtLink>
     </header>

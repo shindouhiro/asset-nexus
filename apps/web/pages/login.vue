@@ -40,20 +40,20 @@ definePageMeta({
   <div class="min-h-screen bg-slate-950 flex items-center justify-center p-4">
     <div class="max-w-md w-full">
       <!-- Logo/Brand -->
-      <div class="text-center mb-10">
-        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-[0_0_30px_rgba(34,211,238,0.3)] mb-6">
-          <span class="i-carbon-nexus text-4xl text-white" />
+      <div class="text-center mb-8 sm:mb-10">
+        <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-[0_0_30px_rgba(34,211,238,0.3)] mb-4 sm:mb-6">
+          <span class="i-carbon-nexus text-3xl sm:text-4xl text-white" />
         </div>
-        <h1 class="text-3xl font-bold text-white tracking-tight">
+        <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
           Asset Nexus
         </h1>
-        <p class="text-slate-400 mt-2">
+        <p class="text-slate-400 mt-2 text-sm sm:text-base">
           管理后台身份验证
         </p>
       </div>
 
       <!-- Login Card -->
-      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
         <!-- Decoration -->
         <div class="absolute -top-24 -right-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
         <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
