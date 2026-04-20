@@ -1,0 +1,22 @@
+{
+  "name": "platform",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@10.4.1",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "pnpm --filter web dev",
+    "start": "node apps/web/.output/server/index.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "turbo typecheck"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-format": "^2.0.1",
+    "turbo": "catalog:",
+    "typescript": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}
