@@ -26,6 +26,10 @@ COPY . .
 # Build the application
 RUN pnpm --filter web build
 
+# Generate database schema (creates sqlite.db if it doesn't exist)
+RUN pnpm --filter @platform/db db:push --force
+RUN pnpm --filter @platform/db db:seed
+
 # Production image
 FROM node:22-slim AS runner
 
