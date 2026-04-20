@@ -19,18 +19,20 @@ async function handleLogin() {
       method: 'POST',
       body: { password: password.value },
     })
-    
+
     await refreshSession()
     await navigateTo('/admin')
-  } catch (e: any) {
+  }
+  catch (e: any) {
     error.value = e.data?.message || '登录失败，请检查密码'
-  } finally {
+  }
+  finally {
     loading.value = false
   }
 }
 
 definePageMeta({
-  layout: false
+  layout: false,
 })
 </script>
 
@@ -40,7 +42,7 @@ definePageMeta({
       <!-- Logo/Brand -->
       <div class="text-center mb-10">
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-[0_0_30px_rgba(34,211,238,0.3)] mb-6">
-          <div class="i-carbon-nexus text-4xl text-white" />
+          <span class="i-carbon-nexus text-4xl text-white" />
         </div>
         <h1 class="text-3xl font-bold text-white tracking-tight">
           Asset Nexus
@@ -63,7 +65,7 @@ definePageMeta({
             </label>
             <div class="relative group">
               <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500 group-focus-within:text-cyan-500 transition-colors">
-                <div class="i-carbon-password" />
+                <span class="i-carbon-password" />
               </div>
               <input
                 id="password"
@@ -76,7 +78,7 @@ definePageMeta({
               >
             </div>
             <p v-if="error" class="text-rose-500 text-xs mt-2 ml-1 flex items-center gap-1">
-              <div class="i-carbon-error" />
+              <span class="i-carbon-error" />
               {{ error }}
             </p>
           </div>
@@ -86,15 +88,15 @@ definePageMeta({
             class="w-full py-3.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-xl font-bold shadow-lg shadow-cyan-900/20 active:scale-[0.98] transition-all disabled:opacity-50 disabled:active:scale-100 flex items-center justify-center gap-2"
             :disabled="loading"
           >
-            <div v-if="loading" class="i-carbon-progress-bar-round animate-spin text-xl" />
-            <div v-else class="i-carbon-login text-xl" />
+            <span v-if="loading" class="i-carbon-progress-bar-round animate-spin text-xl" />
+            <span v-else class="i-carbon-login text-xl" />
             {{ loading ? '验证中...' : '进入后台' }}
           </button>
         </form>
 
         <div class="mt-8 pt-6 border-t border-slate-800 text-center">
           <NuxtLink to="/" class="text-sm text-slate-500 hover:text-cyan-400 transition-colors inline-flex items-center gap-1">
-            <div class="i-carbon-arrow-left" />
+            <span class="i-carbon-arrow-left" />
             返回首页
           </NuxtLink>
         </div>

@@ -1,4 +1,4 @@
-import { db, coupons, users } from './src/index.js'
+import { coupons, db, users } from './src/index.js'
 
 async function seed() {
   console.log('🌱 Seeding database...')
@@ -15,7 +15,7 @@ async function seed() {
       image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=400',
       description: '首单立减 50 元，仅限新用户使用。',
       link: 'https://example.com/welcome',
-    }
+    },
   ]).onConflictDoNothing()
 
   console.log('✅ Seeding complete!')

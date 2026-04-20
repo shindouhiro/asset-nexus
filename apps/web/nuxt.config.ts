@@ -19,4 +19,9 @@ export default defineNuxtConfig({
   css: [
     '@unocss/reset/tailwind.css',
   ],
+  runtimeConfig: {
+    session: {
+      password: process.env.NUXT_SESSION_PASSWORD || 'replace_this_with_a_very_long_random_string_at_least_32_chars',
+    },
+  },
 })

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { Coupon } from '@platform/utils'
 
-const { data: coupons } = await useFetch<Coupon[]>('/api/coupons')
+// const { data: coupons } = await useFetch<Coupon[]>('/api/coupons')
+const coupons = ref<Coupon[]>([])
 
 useHead({
   title: '专享优惠券平台',

@@ -1,4 +1,4 @@
-import { db, repositories, desc, eq } from '@platform/db'
+import { db, desc, eq, repositories } from '@platform/db'
 
 export default defineEventHandler(async (event) => {
   const method = event.method

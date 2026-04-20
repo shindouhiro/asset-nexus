@@ -47,7 +47,7 @@ function addNew() {
       <header class="flex justify-between items-center bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
         <div class="flex items-center gap-4">
           <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.3)]">
-            <div class="i-carbon-ticket text-2xl text-white" />
+            <span class="i-carbon-ticket text-2xl text-white" />
           </div>
           <div>
             <h1 class="text-2xl font-bold text-white tracking-wide">
@@ -60,15 +60,15 @@ function addNew() {
         </div>
         <div class="flex items-center gap-4">
           <NuxtLink to="/" class="flex items-center gap-2 px-4 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all font-medium">
-            <div class="i-carbon-view text-lg" />
+            <span class="i-carbon-view text-lg" />
             预览前台
           </NuxtLink>
           <button class="flex items-center gap-2 px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-bold shadow-[0_0_10px_rgba(8,145,178,0.5)] transition-all" @click="addNew">
-            <div class="i-carbon-add text-lg" />
+            <span class="i-carbon-add text-lg" />
             新增优惠券
           </button>
           <button class="flex items-center justify-center w-10 h-10 border border-slate-700 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-all" title="退出登录" @click="handleLogout">
-            <div class="i-carbon-logout text-lg" />
+            <span class="i-carbon-logout text-lg" />
           </button>
         </div>
       </header>
@@ -119,7 +119,7 @@ function addNew() {
                     {{ coupon.title }}
                   </div>
                   <a :href="coupon.link" target="_blank" class="text-xs text-cyan-500 hover:text-cyan-400 font-mono flex items-center gap-1 max-w-[200px] truncate">
-                    <div class="i-carbon-link shrink-0" />
+                    <span class="i-carbon-link shrink-0" />
                     {{ coupon.link }}
                   </a>
                 </td>
@@ -137,7 +137,7 @@ function addNew() {
                     class="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-400 hover:text-cyan-300 rounded-md text-sm font-medium transition-colors border border-slate-700"
                     @click="editCoupon(coupon)"
                   >
-                    <div class="i-carbon-edit" />
+                    <span class="i-carbon-edit" />
                     编辑
                   </button>
                 </td>
@@ -145,7 +145,7 @@ function addNew() {
               <!-- Empty State -->
               <tr v-if="!coupons?.length">
                 <td colspan="5" class="p-12 text-center text-slate-500">
-                  <div class="i-carbon-document-blank text-4xl mx-auto mb-3 opacity-50" />
+                  <span class="i-carbon-document-blank text-4xl mx-auto mb-3 opacity-50" />
                   <p>暂无优惠券数据</p>
                 </td>
               </tr>
@@ -160,11 +160,11 @@ function addNew() {
           <!-- Modal Header -->
           <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
             <h2 class="text-xl font-bold text-white flex items-center gap-2">
-              <div class="i-carbon-edit text-cyan-500" />
+              <span class="i-carbon-edit text-cyan-500" />
               {{ editingCoupon.id ? '编辑优惠券配置' : '新增优惠券' }}
             </h2>
             <button class="text-slate-400 hover:text-white transition-colors p-1" @click="isEditing = false">
-              <div class="i-carbon-close text-xl" />
+              <span class="i-carbon-close text-xl" />
             </button>
           </div>
 
@@ -174,7 +174,7 @@ function addNew() {
               <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">优惠券标题</label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <div class="i-carbon-string-text text-slate-500" />
+                  <span class="i-carbon-string-text text-slate-500" />
                 </div>
                 <input
                   v-model="editingCoupon.title" type="text" placeholder="例如: 新人立减50元"
@@ -192,7 +192,7 @@ function addNew() {
                 </div>
                 <div class="flex-1 min-w-0 relative">
                   <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
-                    <div class="i-carbon-link" />
+                    <span class="i-carbon-link" />
                   </div>
                   <input
                     v-model="editingCoupon.image" type="text" placeholder="https://..."
@@ -217,7 +217,7 @@ function addNew() {
               <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">领券/跳转链接</label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <div class="i-carbon-url text-slate-500" />
+                  <span class="i-carbon-url text-slate-500" />
                 </div>
                 <input
                   v-model="editingCoupon.link" type="text" placeholder="https://..."
@@ -233,7 +233,7 @@ function addNew() {
               取消
             </button>
             <button class="px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-bold shadow-[0_0_10px_rgba(8,145,178,0.4)] transition-all flex items-center gap-2" @click="handleSave">
-              <div class="i-carbon-save" />
+              <span class="i-carbon-save" />
               保存设置
             </button>
           </div>
