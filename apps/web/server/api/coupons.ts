@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
     if (method === 'POST') {
       const body = await readBody(event)
-      if (body.id && !isNaN(Number(body.id))) {
+      if (body.id && !Number.isNaN(Number(body.id))) {
         // Update
         await db.update(coupons)
           .set({
@@ -37,7 +37,8 @@ export default defineEventHandler(async (event) => {
       }
       return { success: true }
     }
-  } catch (error: any) {
+  }
+  catch (error: any) {
     console.error('[API Error] /api/coupons:', error)
     throw createError({
       statusCode: 500,

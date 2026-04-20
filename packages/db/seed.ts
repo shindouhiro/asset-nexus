@@ -1,6 +1,8 @@
+import process from 'node:process'
 import { coupons, db, users } from './src/index.js'
 
 async function seed() {
+  // eslint-disable-next-line no-console
   console.log('🌱 Seeding database...')
 
   // Seed users
@@ -18,12 +20,14 @@ async function seed() {
     },
   ]).onConflictDoNothing()
 
+  // eslint-disable-next-line no-console
   console.log('✅ Seeding complete!')
   process.exit(0)
 }
 
 seed().catch((err) => {
   console.error('❌ Seeding failed!')
+
   console.error(err)
   process.exit(1)
 })

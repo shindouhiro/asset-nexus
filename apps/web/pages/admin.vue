@@ -7,7 +7,6 @@ const editingCoupon = ref<Partial<Coupon>>({
   title: '',
   image: '',
   description: '',
-  link: '',
 })
 
 const isEditing = ref(false)

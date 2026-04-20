@@ -1,4 +1,5 @@
 import * as path from 'node:path'
+import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { createClient } from '@libsql/client'
 import { desc, eq } from 'drizzle-orm'
@@ -13,6 +14,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const dbPath = process.env.DATABASE_URL || `file:${path.resolve(__dirname, '../sqlite.db')}`
 
+// eslint-disable-next-line no-console
 console.log(`[DB] Using database at: ${dbPath}`)
 
 const client = createClient({ url: dbPath })
