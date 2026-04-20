@@ -41,8 +41,8 @@ definePageMeta({
     <div class="max-w-md w-full">
       <!-- Logo/Brand -->
       <div class="text-center mb-8 sm:mb-10">
-        <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-[0_0_30px_rgba(34,211,238,0.3)] mb-4 sm:mb-6">
-          <span class="i-carbon-nexus text-3xl sm:text-4xl text-white" />
+        <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-slate-900 border border-slate-800 shadow-[0_0_30px_rgba(34,211,238,0.2)] mb-4 sm:mb-6 overflow-hidden">
+          <img src="/logo.png" alt="Asset Nexus" class="w-full h-full object-cover">
         </div>
         <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
           Asset Nexus

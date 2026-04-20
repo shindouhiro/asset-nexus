@@ -16,13 +16,16 @@ useHead({
 <template>
   <div class="min-h-screen bg-slate-900 text-white font-sans p-4 sm:p-8">
     <header class="max-w-6xl mx-auto mb-8 sm:mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
-      <div>
-        <h1 class="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-          专享优惠券
-        </h1>
-        <p class="text-slate-400 mt-2 text-sm sm:text-base">
-          发现精选优惠，开启省钱之旅
-        </p>
+      <div class="flex items-center gap-4">
+        <img src="/logo.png" alt="Logo" class="w-12 h-12 sm:w-16 sm:h-16 object-contain rounded-xl shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+        <div>
+          <h1 class="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            Asset Nexus
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm sm:text-base">
+            发现精选优惠，开启省钱之旅
+          </p>
+        </div>
       </div>
       <NuxtLink to="/admin" class="px-5 py-2 sm:px-6 sm:py-2 rounded-full border border-slate-700 hover:bg-slate-800 transition-colors text-sm sm:text-base">
         管理后台

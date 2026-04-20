@@ -46,12 +46,12 @@ function addNew() {
       <!-- Top Header -->
       <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-slate-900 p-4 sm:p-6 rounded-2xl border border-slate-800 shadow-xl gap-6">
         <div class="flex items-center gap-4">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.3)] shrink-0">
-            <span class="i-carbon-ticket text-xl sm:text-2xl text-white" />
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.2)] shrink-0 overflow-hidden">
+            <img src="/logo.png" alt="Logo" class="w-full h-full object-cover">
           </div>
           <div>
             <h1 class="text-xl sm:text-2xl font-bold text-white tracking-wide">
-              优惠券管理台
+              Asset Nexus 管理台
             </h1>
             <p class="text-xs sm:text-sm text-slate-400 mt-1">
               管理和配置前端展示的优惠券数据
