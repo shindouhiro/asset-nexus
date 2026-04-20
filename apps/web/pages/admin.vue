@@ -27,6 +27,13 @@ function editCoupon(coupon: Coupon) {
   isEditing.value = true
 }
 
+const { clear } = useUserSession()
+
+async function handleLogout() {
+  await clear()
+  await navigateTo('/login')
+}
+
 function addNew() {
   editingCoupon.value = { title: '', image: '', description: '', link: '' }
   isEditing.value = true
@@ -59,6 +66,9 @@ function addNew() {
           <button class="flex items-center gap-2 px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-bold shadow-[0_0_10px_rgba(8,145,178,0.5)] transition-all" @click="addNew">
             <div class="i-carbon-add text-lg" />
             新增优惠券
+          </button>
+          <button class="flex items-center justify-center w-10 h-10 border border-slate-700 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-all" title="退出登录" @click="handleLogout">
+            <div class="i-carbon-logout text-lg" />
           </button>
         </div>
       </header>

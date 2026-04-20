@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   },
   modules: [
     '@unocss/nuxt',
+    'nuxt-auth-utils',
   ],
   css: [
     '@unocss/reset/tailwind.css',

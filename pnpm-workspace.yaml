@@ -19,3 +19,5 @@ catalogs:
     'drizzle-kit': ^0.30.4
     'better-sqlite3': ^11.8.1
     '@types/better-sqlite3': ^11.0.0
+    'nuxt-auth-utils': ^0.5.10
+    'zod': ^3.24.1

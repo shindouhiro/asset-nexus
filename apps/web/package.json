@@ -16,7 +16,9 @@
     "@platform/utils": "workspace:*",
     "@unocss/nuxt": "catalog:",
     "nuxt": "catalog:",
+    "nuxt-auth-utils": "catalog:",
     "unocss": "catalog:",
-    "vue": "catalog:"
+    "vue": "catalog:",
+    "zod": "catalog:"
   }
 }
