@@ -1,4 +1,4 @@
-# Platform Project Plan (Nuxt 3 + UnoCSS)
+# AssetNexus Project Plan (Nuxt 3 + UnoCSS)
 
 本项目已按照要求调整为基于 Nuxt 3 + UnoCSS 的高性能架构。
 

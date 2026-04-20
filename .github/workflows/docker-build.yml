@@ -46,6 +46,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/platform:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/asset-nexus:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max

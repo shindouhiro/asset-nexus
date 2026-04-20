@@ -1,5 +1,5 @@
 {
-  "name": "platform",
+  "name": "asset-nexus",
   "type": "module",
   "private": true,
   "packageManager": "pnpm@10.4.1",

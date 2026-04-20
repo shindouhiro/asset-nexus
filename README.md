@@ -1,6 +1,6 @@
-# Platform
+# AssetNexus
 
-A modern monorepo platform built with Nuxt 3, Drizzle ORM, and pnpm.
+A modern monorepo asset management portal built with Nuxt 3, Drizzle ORM, and pnpm.
 
 ## Tech Stack
 
@@ -47,13 +47,13 @@ pnpm dev
 Build the Docker image:
 
 ```bash
-docker build -t platform .
+docker build -t asset-nexus .
 ```
 
 Run the container:
 
 ```bash
-docker run -p 3000:3000 platform
+docker run -p 3000:3000 asset-nexus
 ```
 
 ## GitHub Repository Creation
@@ -61,5 +61,5 @@ docker run -p 3000:3000 platform
 To create a new GitHub repository and push this code:
 
 ```bash
-gh repo create platform --public --source=. --remote=origin --push
+gh repo create asset-nexus --public --source=. --remote=origin --push
 ```
