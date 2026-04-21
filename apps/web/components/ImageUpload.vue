@@ -21,6 +21,26 @@ const progress = ref(0)
 const images = ref<ImageItem[]>([])
 const currentPreviewUrl = ref('')
 
+// Helpers for proxying
+function wrapProxy(url: string) {
+  if (url && url.includes('hn-bkt.clouddn.com') && !url.startsWith('/api/proxy')) {
+    return `/api/proxy?url=${encodeURIComponent(url)}`
+  }
+  return url
+}
+
+function unwrapProxy(url: string) {
+  if (url && url.startsWith('/api/proxy?url=')) {
+    try {
+      const searchParams = new URLSearchParams(url.split('?')[1])
+      return searchParams.get('url') || url
+    } catch {
+      return url
+    }
+  }
+  return url
+}
+
 // Initialize images from modelValue
 watch(() => props.modelValue, (val) => {
   if (!val) {
@@ -31,35 +51,22 @@ watch(() => props.modelValue, (val) => {
     const parsed = JSON.parse(val)
     if (Array.isArray(parsed)) {
       images.value = parsed.map(item => {
-        const obj = typeof item === 'string' ? { url: item, isCover: false } : item
-        if (obj.url.includes('hn-bkt.clouddn.com') && !obj.url.startsWith('/api/proxy')) {
-          obj.url = `/api/proxy?url=${encodeURIComponent(obj.url)}`
-        }
+        const obj = typeof item === 'string' ? { url: item, isCover: false } : { ...item }
+        obj.url = wrapProxy(obj.url)
         return obj
       })
     } else if (typeof parsed === 'object' && parsed.list) {
       // Handle legacy object format if any
-      images.value = (parsed.list as string[]).map(url => {
-        let finalUrl = url
-        if (finalUrl.includes('hn-bkt.clouddn.com') && !finalUrl.startsWith('/api/proxy')) {
-          finalUrl = `/api/proxy?url=${encodeURIComponent(finalUrl)}`
-        }
-        return { url: finalUrl, isCover: url === parsed.cover }
-      })
+      images.value = (parsed.list as string[]).map(url => ({ 
+        url: wrapProxy(url), 
+        isCover: url === parsed.cover 
+      }))
     } else {
-       let finalUrl = val
-       if (finalUrl.includes('hn-bkt.clouddn.com') && !finalUrl.startsWith('/api/proxy')) {
-         finalUrl = `/api/proxy?url=${encodeURIComponent(finalUrl)}`
-       }
-       images.value = [{ url: finalUrl, isCover: true }]
+       images.value = [{ url: wrapProxy(val), isCover: true }]
     }
   } catch (e) {
     // Legacy single URL string
-    let finalUrl = val
-    if (finalUrl.includes('hn-bkt.clouddn.com') && !finalUrl.startsWith('/api/proxy')) {
-      finalUrl = `/api/proxy?url=${encodeURIComponent(finalUrl)}`
-    }
-    images.value = [{ url: finalUrl, isCover: true }]
+    images.value = [{ url: wrapProxy(val), isCover: true }]
   }
 }, { immediate: true })
 
@@ -68,7 +75,14 @@ function updateModel() {
     emit('update:modelValue', '')
     return
   }
-  emit('update:modelValue', JSON.stringify(images.value))
+  
+  // Clean URLs before saving to DB
+  const cleanImages = images.value.map(img => ({
+    ...img,
+    url: unwrapProxy(img.url)
+  }))
+  
+  emit('update:modelValue', JSON.stringify(cleanImages))
 }
 
 async function handleFileChange(event: Event) {
@@ -110,14 +124,13 @@ async function uploadFile(file: File) {
           reject(err)
         },
         complete(res) {
-          let url = `${domain}/${res.key}`
-          if (url.includes('hn-bkt.clouddn.com')) {
-            url = `/api/proxy?url=${encodeURIComponent(url)}`
-          }
-          images.value.push({ url, isCover: false })
+          const rawUrl = `${domain}/${res.key}`
+          const displayUrl = wrapProxy(rawUrl)
+          
+          images.value.push({ url: displayUrl, isCover: false })
           updateModel()
           isUploading.value = false
-          resolve(url)
+          resolve(displayUrl)
         }
       })
     })
@@ -155,7 +168,11 @@ function triggerUpload() {
         :key="index"
         class="group relative aspect-video rounded-xl border border-slate-700 bg-slate-950 overflow-hidden"
       >
-        <img :src="img.url" class="h-full w-full object-cover" />
+        <img 
+          :src="img.url" 
+          class="h-full w-full object-cover" 
+          @error="(e) => (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Preview+Error'"
+        />
         
         <!-- Cover Badge -->
         <div 
@@ -247,7 +264,11 @@ function triggerUpload() {
         @click="currentPreviewUrl = ''"
       >
         <div class="relative max-w-5xl max-h-full">
-          <img :src="currentPreviewUrl" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl" />
+          <img 
+            :src="currentPreviewUrl" 
+            class="max-w-full max-h-[90vh] rounded-lg shadow-2xl" 
+            @error="(e) => (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Preview+Error'"
+          />
           <button 
             class="absolute -top-12 right-0 p-2 text-white hover:text-cyan-400 transition-colors"
             @click.stop="currentPreviewUrl = ''"
