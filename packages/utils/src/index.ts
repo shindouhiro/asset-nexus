@@ -12,10 +12,11 @@ export function getCoverUrl(image: string | undefined | null): string {
     const parsed = JSON.parse(image)
     if (Array.isArray(parsed)) {
       const cover = parsed.find(img => img.isCover) || parsed[0]
-      return typeof cover === 'string' ? cover : cover.url
+      const url = typeof cover === 'string' ? cover : cover.url
+      return url.includes('hn-bkt.clouddn.com') ? `/api/proxy?url=${encodeURIComponent(url)}` : url
     }
-    return image
+    return image.includes('hn-bkt.clouddn.com') ? `/api/proxy?url=${encodeURIComponent(image)}` : image
   } catch {
-    return image
+    return image.includes('hn-bkt.clouddn.com') ? `/api/proxy?url=${encodeURIComponent(image)}` : image
   }
 }

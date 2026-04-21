@@ -30,16 +30,36 @@ watch(() => props.modelValue, (val) => {
   try {
     const parsed = JSON.parse(val)
     if (Array.isArray(parsed)) {
-      images.value = parsed.map(item => typeof item === 'string' ? { url: item, isCover: false } : item)
+      images.value = parsed.map(item => {
+        const obj = typeof item === 'string' ? { url: item, isCover: false } : item
+        if (obj.url.includes('hn-bkt.clouddn.com') && !obj.url.startsWith('/api/proxy')) {
+          obj.url = `/api/proxy?url=${encodeURIComponent(obj.url)}`
+        }
+        return obj
+      })
     } else if (typeof parsed === 'object' && parsed.list) {
       // Handle legacy object format if any
-      images.value = (parsed.list as string[]).map(url => ({ url, isCover: url === parsed.cover }))
+      images.value = (parsed.list as string[]).map(url => {
+        let finalUrl = url
+        if (finalUrl.includes('hn-bkt.clouddn.com') && !finalUrl.startsWith('/api/proxy')) {
+          finalUrl = `/api/proxy?url=${encodeURIComponent(finalUrl)}`
+        }
+        return { url: finalUrl, isCover: url === parsed.cover }
+      })
     } else {
-       images.value = [{ url: val, isCover: true }]
+       let finalUrl = val
+       if (finalUrl.includes('hn-bkt.clouddn.com') && !finalUrl.startsWith('/api/proxy')) {
+         finalUrl = `/api/proxy?url=${encodeURIComponent(finalUrl)}`
+       }
+       images.value = [{ url: finalUrl, isCover: true }]
     }
   } catch (e) {
     // Legacy single URL string
-    images.value = [{ url: val, isCover: true }]
+    let finalUrl = val
+    if (finalUrl.includes('hn-bkt.clouddn.com') && !finalUrl.startsWith('/api/proxy')) {
+      finalUrl = `/api/proxy?url=${encodeURIComponent(finalUrl)}`
+    }
+    images.value = [{ url: finalUrl, isCover: true }]
   }
 }, { immediate: true })
 
@@ -90,7 +110,10 @@ async function uploadFile(file: File) {
           reject(err)
         },
         complete(res) {
-          const url = `${domain}/${res.key}`
+          let url = `${domain}/${res.key}`
+          if (url.includes('hn-bkt.clouddn.com')) {
+            url = `/api/proxy?url=${encodeURIComponent(url)}`
+          }
           images.value.push({ url, isCover: false })
           updateModel()
           isUploading.value = false
