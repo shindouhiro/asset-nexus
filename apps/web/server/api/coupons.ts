@@ -37,6 +37,19 @@ export default defineEventHandler(async (event) => {
       }
       return { success: true }
     }
+
+    if (method === 'DELETE') {
+      const query = getQuery(event)
+      const id = query.id as string
+      if (!id || Number.isNaN(Number(id))) {
+        throw createError({
+          statusCode: 400,
+          statusMessage: 'Invalid or missing ID',
+        })
+      }
+      await db.delete(coupons).where(eq(coupons.id, Number(id)))
+      return { success: true }
+    }
   }
   catch (error: any) {
     console.error('[API Error] /api/coupons:', error)

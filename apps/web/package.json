@@ -22,5 +22,8 @@
     "unocss": "catalog:",
     "vue": "catalog:",
     "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nuxtjs/color-mode": "catalog:"
   }
 }

@@ -22,7 +22,13 @@ export default defineNuxtConfig({
   modules: [
     '@unocss/nuxt',
     'nuxt-auth-utils',
+    '@nuxtjs/color-mode',
   ],
+  colorMode: {
+    classSuffix: '',
+    preference: 'dark',
+    fallback: 'dark',
+  },
   css: [
     '@unocss/reset/tailwind.css',
   ],
