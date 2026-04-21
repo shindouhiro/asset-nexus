@@ -1,4 +1,3 @@
-import process from 'node:process'
 import { coupons, db, users } from './src/index.js'
 
 async function seed() {

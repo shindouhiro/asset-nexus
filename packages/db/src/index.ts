@@ -1,5 +1,4 @@
 import * as path from 'node:path'
-import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { createClient } from '@libsql/client'
 import { desc, eq } from 'drizzle-orm'
