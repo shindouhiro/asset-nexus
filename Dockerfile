@@ -35,12 +35,12 @@ FROM node:22-slim AS runner
 
 WORKDIR /app
 
-# Install production dependencies for native modules like better-sqlite3
+# Install production dependencies
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY packages/db/package.json ./packages/db/
 COPY apps/web/package.json ./apps/web/
 
-# Install pnpm and prod dependencies
+# Install pnpm and prod dependencies (libsql is much lighter to install)
 RUN npm install -g pnpm && pnpm install --prod --frozen-lockfile
 
 # Copy the built output from Nuxt
