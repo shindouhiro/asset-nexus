@@ -1,0 +1,26 @@
+services:
+  app:
+    image: shindouhiro/asset-nexus:latest # 请替换为您实际的镜像名称
+    container_name: asset-nexus
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./.env
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:/app/packages/db/sqlite.db
+      - NUXT_SESSION_PASSWORD=${NUXT_SESSION_PASSWORD}
+      - NUXT_QINIU_ACCESS_KEY=${QINIU_ACCESS_KEY}
+      - NUXT_QINIU_SECRET_KEY=${QINIU_SECRET_KEY}
+      - NUXT_QINIU_BUCKET=${QINIU_BUCKET}
+      - NUXT_QINIU_DOMAIN=${QINIU_DOMAIN}
+      - NUXT_PUBLIC_QINIU_BUCKET=${QINIU_BUCKET}
+      - NUXT_PUBLIC_QINIU_DOMAIN=${QINIU_DOMAIN}
+      - NUXT_PUBLIC_QINIU_REGION=${QINIU_REGION}
+    volumes:
+      - ./data:/app/packages/db # 持久化数据库到宿主机的 ./data 目录
+    restart: always
+
+networks:
+  default:
+    name: asset-nexus-network
