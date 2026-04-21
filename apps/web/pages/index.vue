@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Coupon } from '@platform/utils'
+import { type Coupon, getCoverUrl } from '@platform/utils'
 
 const { data: coupons } = await useFetch<Coupon[]>('/api/coupons', {
   default: () => [],
@@ -38,7 +38,7 @@ useHead({
         class="group relative bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300"
       >
         <div class="aspect-video relative overflow-hidden">
-          <img :src="coupon.image" :alt="coupon.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <img :src="getCoverUrl(coupon.image)" :alt="coupon.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60" />
           <div class="absolute bottom-4 left-4">
             <!-- <span class="px-3 py-1 bg-cyan-500 text-xs font-bold rounded-lg uppercase tracking-wider">限时抢购</span> -->

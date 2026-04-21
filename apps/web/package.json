@@ -18,6 +18,8 @@
     "better-sqlite3": "catalog:",
     "nuxt": "catalog:",
     "nuxt-auth-utils": "catalog:",
+    "qiniu": "catalog:",
+    "qiniu-js": "catalog:",
     "unocss": "catalog:",
     "vue": "catalog:",
     "zod": "catalog:"

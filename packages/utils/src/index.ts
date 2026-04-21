@@ -6,6 +6,16 @@ export interface Coupon {
   link: string
 }
 
-export function hello() {
-  return 'Hello from @platform/utils'
+export function getCoverUrl(image: string | undefined | null): string {
+  if (!image) return ''
+  try {
+    const parsed = JSON.parse(image)
+    if (Array.isArray(parsed)) {
+      const cover = parsed.find(img => img.isCover) || parsed[0]
+      return typeof cover === 'string' ? cover : cover.url
+    }
+    return image
+  } catch {
+    return image
+  }
 }

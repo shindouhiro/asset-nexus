@@ -25,5 +25,18 @@ export default defineNuxtConfig({
     session: {
       password: process.env.NUXT_SESSION_PASSWORD || 'replace_this_with_a_very_long_random_string_at_least_32_chars',
     },
+    qiniu: {
+      accessKey: process.env.QINIU_ACCESS_KEY,
+      secretKey: process.env.QINIU_SECRET_KEY,
+      bucket: process.env.QINIU_BUCKET,
+      domain: process.env.QINIU_DOMAIN,
+    },
+    public: {
+      qiniu: {
+        bucket: process.env.QINIU_BUCKET,
+        domain: process.env.QINIU_DOMAIN,
+        region: process.env.QINIU_REGION || 'z0',
+      },
+    },
   },
 })

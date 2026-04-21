@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Coupon } from '@platform/utils'
+import { type Coupon, getCoverUrl } from '@platform/utils'
 
 const { data: coupons, refresh } = await useFetch<Coupon[]>('/api/coupons')
 
@@ -108,7 +108,7 @@ function addNew() {
                 <!-- Image -->
                 <td class="p-4">
                   <div class="w-16 h-12 sm:w-20 sm:h-14 rounded-lg overflow-hidden border border-slate-700 bg-slate-800">
-                    <img :src="coupon.image" :alt="coupon.title" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <img :src="getCoverUrl(coupon.image)" :alt="coupon.title" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                   </div>
                 </td>
 
@@ -183,25 +183,8 @@ function addNew() {
             </div>
 
             <div>
-              <label class="block text-xs sm:text-sm font-medium text-slate-400 mb-1.5 ml-1">封面图片视图</label>
-              <div class="flex gap-4 items-start">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shrink-0">
-                  <img v-if="editingCoupon.image" :src="editingCoupon.image" class="w-full h-full object-cover">
-                  <div v-else class="i-carbon-image text-2xl text-slate-600" />
-                </div>
-                <div class="flex-1 min-w-0 relative">
-                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
-                    <span class="i-carbon-link" />
-                  </div>
-                  <input
-                    v-model="editingCoupon.image" type="text" placeholder="https://..."
-                    class="w-full h-9 sm:h-10 bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition-all mb-1 sm:mb-2"
-                  >
-                  <p class="text-[10px] sm:text-xs text-slate-500">
-                    建议尺寸: 800x450px
-                  </p>
-                </div>
-              </div>
+              <label class="block text-xs sm:text-sm font-medium text-slate-400 mb-1.5 ml-1">封面图片上传</label>
+              <ImageUpload v-model="editingCoupon.image" placeholder="点击或拖拽上传封面图" />
             </div>
 
             <div>
