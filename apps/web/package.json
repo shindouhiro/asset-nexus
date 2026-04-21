@@ -15,7 +15,6 @@
     "@platform/db": "workspace:^",
     "@platform/utils": "workspace:*",
     "@unocss/nuxt": "catalog:",
-    "better-sqlite3": "catalog:",
     "nuxt": "catalog:",
     "nuxt-auth-utils": "catalog:",
     "qiniu": "catalog:",
